@@ -8,8 +8,6 @@ A **4-bit Comparator** is a combinational circuit that compares two 4-bit binary
 
 This project implements a 4-bit Comparator using **behavioral modeling** in Verilog.
 
-```
-
 ## How to Run
 1. Copy the Verilog module and testbench into a Verilog simulator (ModelSim, QuestaSim, Vivado, etc.).
 2. Compile and run the testbench.
