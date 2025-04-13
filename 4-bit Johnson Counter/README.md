@@ -9,56 +9,6 @@ This project implements a **4-bit Johnson Counter** using behavioral modeling in
 
 ---
 
-## Verilog Module
-
-### Behavioral Modeling
-```verilog
-module johnson_counter_4bit (
-    input clk,
-    input reset,
-    output reg [3:0] Q
-);
-    always @(posedge clk or posedge reset) begin
-        if (reset)
-            Q <= 4'b0000;
-        else
-            Q <= {~Q[0], Q[3:1]};
-    end
-endmodule
-```
-
----
-
-## Testbench
-A testbench `johnson_counter_4bit_tb` is used to verify the functionality.
-
-```verilog
-`timescale 1ns / 1ps
-module johnson_counter_4bit_tb;
-    reg clk, reset;
-    wire [3:0] Q;
-
-    // Instantiate the counter
-    johnson_counter_4bit uut (
-        .clk(clk), .reset(reset), .Q(Q)
-    );
-
-    initial begin
-        $monitor("Time=%0t | Reset=%b | Q=%b", $time, reset, Q);
-        clk = 0;
-        reset = 1; #10;
-        reset = 0; #5;
-        repeat(12) begin
-            #10 clk = ~clk;
-            #10 clk = ~clk;
-        end
-        $finish;
-    end
-endmodule
-```
-
----
-
 ## How to Run
 1. Copy the module and testbench into a Verilog simulator (Vivado, ModelSim, etc.).
 2. Compile and run the testbench.
